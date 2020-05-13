@@ -45,16 +45,15 @@ VAR&lev  =   lev
 VAR&lat  =   lat
 VAR&lon  =   lon
 printVarSummary(VAR)
-; Extrayendo la serie de tiempo del punto mas cercano a lat = -12.0, lon = -75.0
+; Getting the data for the nearest point
 V = VAR(:,{lev_x},{lat_x},{lon_x})
 printVarSummary(V)
-;***    Obteniendo los valores de las fechas en UTC
+;***    Getting time in UTC
 yy = stringtofloat(t_char(:,0:3))
 mm = stringtofloat(t_char(:,5:7))
 dd = stringtofloat(t_char(:,8:10))
 hh = stringtofloat(t_char(:,11:12))
-;printVarSummary(yy)
-;print(yy)
+
 write_table("PM10.csv","a",[/"Year","month","day","hour","PM10(ug/m3)"/], \
               "%s, %s, %s, %s, %s")
 write_table("PM10.csv","a",[/yy,mm,dd,hh,V/], \
